@@ -406,10 +406,10 @@ class ForcepointWebSecurityConnector(BaseConnector):
             for curr_obj_type in ['IPs', 'URLs']:
                 for curr_obj in cat_details[curr_obj_type]:
                     # Because URLs may or may not include the protocol from the input parameter, check if either match
-                    if curr_obj in category_map.keys():
+                    if curr_obj in list(category_map.keys()):
                         category_map[curr_obj].append(category['Category Name'])
                         break
-                    elif curr_obj.split('//')[-1] in category_map.keys():
+                    elif curr_obj.split('//')[-1] in list(category_map.keys()):
                         category_map[curr_obj.split('//')[-1]].append(category['Category Name'])
                         break
 
@@ -568,13 +568,13 @@ class ForcepointWebSecurityConnector(BaseConnector):
 
             # Invert 'object to category' mapping to have categories mapped to objects instead
             cat_to_obj = defaultdict(list)
-            for obj, cats in obj_to_cat.iteritems():
+            for obj, cats in obj_to_cat.items():
                 for cat in cats:
                     cat_to_obj[cat].append(obj)
 
             # Create payloads
             payloads = []
-            for cat, objs in cat_to_obj.iteritems():
+            for cat, objs in cat_to_obj.items():
                 payload = defaultdict(list, {'Category Name': cat})
                 for obj in objs:
                     if obj in ips:
@@ -653,13 +653,13 @@ class ForcepointWebSecurityConnector(BaseConnector):
 
         # Separate each object into their own data result
         # Each object can be 'ip' or 'url'
-        for obj, categories in category_map.iteritems():
+        for obj, categories in category_map.items():
             action_result.add_data({obj_type: obj, 'categories': categories})
 
         # Add a dictionary that is made up of the most important values from data into the summary
         summary = action_result.update_summary({})
         summary['lookup count'] = len(category_map)
-        summary['found category count'] = len([v for v in category_map.itervalues() if v])
+        summary['found category count'] = len([v for v in category_map.values() if v])
 
         message = 'Retrieved categories for each object: {}'.format(object_list)
         return action_result.set_status(phantom.APP_SUCCESS, message)
@@ -870,9 +870,9 @@ class ForcepointWebSecurityConnector(BaseConnector):
         # get the asset config
         config = self.get_config()
 
-        self._base_url = config['base_url'].encode('utf-8')
+        self._base_url = config['base_url']
         self._port = config['port']
-        self._username = config['username'].encode('utf-8')
+        self._username = config['username']
         self._password = config['password']
 
         self._verify_cert = config.get('verify_server_certificate', False)

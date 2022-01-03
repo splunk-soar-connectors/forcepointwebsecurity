@@ -8,12 +8,18 @@
     "logo_dark": "logo_forcepoint_dark.svg",
     "product_name": "Web Security",
     "product_version_regex": ".*",
+    "python_version": "3",
     "publisher": "Splunk",
+    "contributors": [
+        {
+            "name": "Ian Wills"
+        }
+    ],
     "license": "Copyright (c) 2019 Splunk Inc.",
-    "app_version": "1.0.8",
+    "app_version": "1.0.9",
     "utctime_updated": "2021-11-10T01:17:48.000000Z",
     "package_name": "phantom_forcepointwebsecurity",
-    "main_module": "forcepointwebsecurity_connector.pyc",
+    "main_module": "forcepointwebsecurity_connector.py",
     "min_phantom_version": "4.2.7532",
     "app_wizard_version": "1.0.0",
     "configuration": {
@@ -1297,10 +1303,6 @@
             {
                 "module": "backports.functools_lru_cache",
                 "input_file": "wheels/backports.functools_lru_cache-1.6.4-py2.py3-none-any.whl"
-            },
-            {
-                "module": "beautifulsoup4",
-                "input_file": "wheels/beautifulsoup4-4.9.1-py2-none-any.whl"
             },
             {
                 "module": "certifi",
