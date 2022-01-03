@@ -9,7 +9,7 @@
     "product_name": "Web Security",
     "product_version_regex": ".*",
     "python_version": "3",
-    "publisher": "Splunk",
+    "publisher": "Splunk Community",
     "contributors": [
         {
             "name": "Ian Wills"
@@ -20,7 +20,7 @@
     "utctime_updated": "2021-11-10T01:17:48.000000Z",
     "package_name": "phantom_forcepointwebsecurity",
     "main_module": "forcepointwebsecurity_connector.py",
-    "min_phantom_version": "4.2.7532",
+    "min_phantom_version": "5.0.0",
     "app_wizard_version": "1.0.0",
     "configuration": {
         "base_url": {
@@ -1301,8 +1301,8 @@
     "pip_dependencies": {
         "wheel": [
             {
-                "module": "backports.functools_lru_cache",
-                "input_file": "wheels/backports.functools_lru_cache-1.6.4-py2.py3-none-any.whl"
+                "module": "beautifulsoup4",
+                "input_file": "wheels/beautifulsoup4-4.10.0-py3-none-any.whl"
             },
             {
                 "module": "certifi",
@@ -1322,7 +1322,7 @@
             },
             {
                 "module": "soupsieve",
-                "input_file": "wheels/soupsieve-1.9.6-py2.py3-none-any.whl"
+                "input_file": "wheels/soupsieve-2.3.1-py3-none-any.whl"
             },
             {
                 "module": "urllib3",
