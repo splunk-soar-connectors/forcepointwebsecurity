@@ -136,7 +136,7 @@ class ForcepointWebSecurityConnector(BaseConnector):
             return self._process_empty_response(r, action_result)
 
         # everything else is actually an error at this point
-        message = "Can't process response from server. Status Code: {0} Content-Type: {1} Data from server: {1}".format(
+        message = "Can't process response from server. Status Code: {0} Content-Type: {1} Data from server: {2}".format(
                 r.status_code, r.headers.get('Content-Type'), r.text.replace('{', '{{').replace('}', '}}'))
 
         return action_result.set_status(phantom.APP_ERROR, message), None
@@ -474,7 +474,8 @@ class ForcepointWebSecurityConnector(BaseConnector):
         if cat.lower() not in [category['Category Name'].lower() for category in self._flatten_categories(categories['Categories'])]:
             if not create_cat:
                 # Asked to not create category, attempt rollback and return error
-                message = 'Category "{}" does not exist. Create the category or enable the "create_category" option on this action and try again'.format(cat)
+                message = 'Category "{}" does not exist. '\
+                          'Create the category or enable the "create_category" option on this action and try again'.format(cat)
                 return action_result.set_status(phantom.APP_ERROR, message)
             else:
                 # Set boolean to create a category when the transaction has been started.
@@ -912,7 +913,7 @@ if __name__ == '__main__':
     if (username and password):
         try:
             login_url = BaseConnector._get_phantom_base_url() + "login"
-            print ("Accessing the Login page")
+            print("Accessing the Login page")
             r = requests.get(login_url, verify=False)
             csrftoken = r.cookies['csrftoken']
 
@@ -925,11 +926,11 @@ if __name__ == '__main__':
             headers['Cookie'] = 'csrftoken=' + csrftoken
             headers['Referer'] = login_url
 
-            print ("Logging into Platform to get the session id")
+            print("Logging into Platform to get the session id")
             r2 = requests.post(login_url, verify=False, data=data, headers=headers)
             session_id = r2.cookies['sessionid']
         except Exception as e:
-            print ("Unable to get session id from the platform. Error: " + str(e))
+            print("Unable to get session id from the platform. Error: " + str(e))
             exit(1)
 
     with open(args.input_test_json) as f:
@@ -945,6 +946,6 @@ if __name__ == '__main__':
             connector._set_csrf_info(csrftoken, headers['Referer'])
 
         ret_val = connector._handle_action(json.dumps(in_json), None)
-        print (json.dumps(json.loads(ret_val), indent=4))
+        print(json.dumps(json.loads(ret_val), indent=4))
 
     exit(0)
