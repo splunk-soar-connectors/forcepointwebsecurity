@@ -21,6 +21,7 @@
     "package_name": "phantom_forcepointwebsecurity",
     "main_module": "forcepointwebsecurity_connector.py",
     "min_phantom_version": "5.0.0",
+    "fips_compliant": true,
     "app_wizard_version": "1.0.0",
     "configuration": {
         "base_url": {
