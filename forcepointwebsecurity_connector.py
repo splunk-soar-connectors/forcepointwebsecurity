@@ -1,6 +1,6 @@
 # File: forcepointwebsecurity_connector.py
 #
-# Copyright (c) 2019 Splunk Inc.
+# Copyright (c) 2019-2022 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 #
 
 import json
+import sys
 from collections import defaultdict
 
 import phantom.app as phantom
@@ -406,7 +407,7 @@ class ForcepointWebSecurityConnector(BaseConnector):
             for curr_obj_type in ['IPs', 'URLs']:
                 for curr_obj in cat_details[curr_obj_type]:
                     # Because URLs may or may not include the protocol from the input parameter, check if either match
-                    if curr_obj in list(category_map.keys()):
+                    if curr_obj in category_map:
                         category_map[curr_obj].append(category['Category Name'])
                         break
                     elif curr_obj.split('//')[-1] in list(category_map.keys()):
@@ -569,13 +570,13 @@ class ForcepointWebSecurityConnector(BaseConnector):
 
             # Invert 'object to category' mapping to have categories mapped to objects instead
             cat_to_obj = defaultdict(list)
-            for obj, cats in obj_to_cat.items():
+            for obj, cats in list(obj_to_cat.items()):
                 for cat in cats:
                     cat_to_obj[cat].append(obj)
 
             # Create payloads
             payloads = []
-            for cat, objs in cat_to_obj.items():
+            for cat, objs in list(cat_to_obj.items()):
                 payload = defaultdict(list, {'Category Name': cat})
                 for obj in objs:
                     if obj in ips:
@@ -654,13 +655,13 @@ class ForcepointWebSecurityConnector(BaseConnector):
 
         # Separate each object into their own data result
         # Each object can be 'ip' or 'url'
-        for obj, categories in category_map.items():
+        for obj, categories in list(category_map.items()):
             action_result.add_data({obj_type: obj, 'categories': categories})
 
         # Add a dictionary that is made up of the most important values from data into the summary
         summary = action_result.update_summary({})
         summary['lookup count'] = len(category_map)
-        summary['found category count'] = len([v for v in category_map.values() if v])
+        summary['found category count'] = len([v for v in list(category_map.values()) if v])
 
         message = 'Retrieved categories for each object: {}'.format(object_list)
         return action_result.set_status(phantom.APP_SUCCESS, message)
@@ -898,12 +899,14 @@ if __name__ == '__main__':
     argparser.add_argument('input_test_json', help='Input Test JSON file')
     argparser.add_argument('-u', '--username', help='username', required=False)
     argparser.add_argument('-p', '--password', help='password', required=False)
+    argparser.add_argument('-v', '--verify', action='store_true', help='verify', required=False, default=False)
 
     args = argparser.parse_args()
     session_id = None
 
     username = args.username
     password = args.password
+    verify = args.verify
 
     if (username is not None and password is None):
 
@@ -915,7 +918,7 @@ if __name__ == '__main__':
         try:
             login_url = BaseConnector._get_phantom_base_url() + "login"
             print("Accessing the Login page")
-            r = requests.get(login_url, verify=False)
+            r = requests.get(login_url, verify=verify, timeout=60)
             csrftoken = r.cookies['csrftoken']
 
             data = dict()
@@ -928,11 +931,11 @@ if __name__ == '__main__':
             headers['Referer'] = login_url
 
             print("Logging into Platform to get the session id")
-            r2 = requests.post(login_url, verify=False, data=data, headers=headers)
+            r2 = requests.post(login_url, verify=verify, data=data, headers=headers, timeout=60)
             session_id = r2.cookies['sessionid']
         except Exception as e:
             print("Unable to get session id from the platform. Error: " + str(e))
-            exit(1)
+            sys.exit(1)
 
     with open(args.input_test_json) as f:
         in_json = f.read()
@@ -949,4 +952,4 @@ if __name__ == '__main__':
         ret_val = connector._handle_action(json.dumps(in_json), None)
         print(json.dumps(json.loads(ret_val), indent=4))
 
-    exit(0)
+    sys.exit(0)
