@@ -1,12 +1,12 @@
 [comment]: # "Auto-generated SOAR connector documentation"
 # Forcepoint Web Security
 
-Publisher: Splunk  
-Connector Version: 1\.0\.8  
+Publisher: Splunk Community  
+Connector Version: 2\.0\.1  
 Product Vendor: Forcepoint  
 Product Name: Web Security  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 4\.2\.7532  
+Minimum Product Version: 5\.0\.0  
 
 This app provides category management and blocking actions for the Forcepoint Web Security platform
 
