@@ -16,8 +16,8 @@
         }
     ],
     "license": "Copyright (c) 2019-2022 Splunk Inc.",
-    "app_version": "2.0.0",
-    "utctime_updated": "2021-11-10T01:17:48.000000Z",
+    "app_version": "2.0.1",
+    "utctime_updated": "2022-01-25T10:17:12.000000Z",
     "package_name": "phantom_forcepointwebsecurity",
     "main_module": "forcepointwebsecurity_connector.py",
     "min_phantom_version": "5.0.0",
