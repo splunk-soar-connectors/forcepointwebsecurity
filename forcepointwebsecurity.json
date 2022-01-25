@@ -8,13 +8,20 @@
     "logo_dark": "logo_forcepoint_dark.svg",
     "product_name": "Web Security",
     "product_version_regex": ".*",
-    "publisher": "Splunk",
-    "license": "Copyright (c) 2019 Splunk Inc.",
-    "app_version": "1.0.9",
-    "utctime_updated": "2022-01-07T22:08:18.000000Z",
+    "python_version": "3",
+    "publisher": "Splunk Community",
+    "contributors": [
+        {
+            "name": "Ian Wills"
+        }
+    ],
+    "license": "Copyright (c) 2019-2022 Splunk Inc.",
+    "app_version": "2.0.0",
+    "utctime_updated": "2021-11-10T01:17:48.000000Z",
     "package_name": "phantom_forcepointwebsecurity",
-    "main_module": "forcepointwebsecurity_connector.pyc",
-    "min_phantom_version": "4.2.7532",
+    "main_module": "forcepointwebsecurity_connector.py",
+    "min_phantom_version": "5.0.0",
+    "fips_compliant": true,
     "app_wizard_version": "1.0.0",
     "configuration": {
         "base_url": {
@@ -98,7 +105,6 @@
                 "create_category": {
                     "description": "If the category does not exist, create it",
                     "data_type": "boolean",
-                    "required": false,
                     "default": true,
                     "order": 2
                 }
@@ -109,7 +115,7 @@
                     "data_type": "string",
                     "example_values": [
                         "success",
-                        "falied"
+                        "failed"
                     ]
                 },
                 {
@@ -256,7 +262,6 @@
                 "create_category": {
                     "description": "If the category does not exist, create it",
                     "data_type": "boolean",
-                    "required": false,
                     "default": true,
                     "order": 2
                 }
@@ -403,7 +408,6 @@
                 "category": {
                     "description": "Category for which to remove the block (if empty, remove from all categories)",
                     "data_type": "string",
-                    "required": false,
                     "primary": true,
                     "contains": [
                         "forcepoint category"
@@ -560,7 +564,6 @@
                 "category": {
                     "description": "Category for which to remove the block (if empty, remove from all categories)",
                     "data_type": "string",
-                    "required": false,
                     "primary": true,
                     "contains": [
                         "forcepoint category"
@@ -1204,7 +1207,6 @@
                 "description": {
                     "description": "Description of the category",
                     "data_type": "string",
-                    "required": false,
                     "order": 1
                 }
             },
@@ -1295,12 +1297,8 @@
     "pip_dependencies": {
         "wheel": [
             {
-                "module": "backports.functools_lru_cache",
-                "input_file": "wheels/backports.functools_lru_cache-1.6.4-py2.py3-none-any.whl"
-            },
-            {
                 "module": "beautifulsoup4",
-                "input_file": "wheels/beautifulsoup4-4.9.1-py2-none-any.whl"
+                "input_file": "wheels/beautifulsoup4-4.10.0-py3-none-any.whl"
             },
             {
                 "module": "certifi",
@@ -1320,7 +1318,7 @@
             },
             {
                 "module": "soupsieve",
-                "input_file": "wheels/soupsieve-1.9.6-py2.py3-none-any.whl"
+                "input_file": "wheels/soupsieve-2.3.1-py3-none-any.whl"
             },
             {
                 "module": "urllib3",
