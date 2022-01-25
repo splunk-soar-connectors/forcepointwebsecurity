@@ -410,7 +410,7 @@ class ForcepointWebSecurityConnector(BaseConnector):
                     if curr_obj in category_map:
                         category_map[curr_obj].append(category['Category Name'])
                         break
-                    elif curr_obj.split('//')[-1] in list(category_map.keys()):
+                    elif curr_obj.split('//')[-1] in category_map.keys():
                         category_map[curr_obj.split('//')[-1]].append(category['Category Name'])
                         break
 
@@ -570,13 +570,13 @@ class ForcepointWebSecurityConnector(BaseConnector):
 
             # Invert 'object to category' mapping to have categories mapped to objects instead
             cat_to_obj = defaultdict(list)
-            for obj, cats in list(obj_to_cat.items()):
+            for obj, cats in obj_to_cat.items():
                 for cat in cats:
                     cat_to_obj[cat].append(obj)
 
             # Create payloads
             payloads = []
-            for cat, objs in list(cat_to_obj.items()):
+            for cat, objs in cat_to_obj.items():
                 payload = defaultdict(list, {'Category Name': cat})
                 for obj in objs:
                     if obj in ips:
@@ -655,13 +655,13 @@ class ForcepointWebSecurityConnector(BaseConnector):
 
         # Separate each object into their own data result
         # Each object can be 'ip' or 'url'
-        for obj, categories in list(category_map.items()):
+        for obj, categories in category_map.items():
             action_result.add_data({obj_type: obj, 'categories': categories})
 
         # Add a dictionary that is made up of the most important values from data into the summary
         summary = action_result.update_summary({})
         summary['lookup count'] = len(category_map)
-        summary['found category count'] = len([v for v in list(category_map.values()) if v])
+        summary['found category count'] = len([v for v in category_map.values() if v])
 
         message = 'Retrieved categories for each object: {}'.format(object_list)
         return action_result.set_status(phantom.APP_SUCCESS, message)
