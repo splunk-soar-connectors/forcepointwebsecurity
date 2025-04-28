@@ -20,7 +20,7 @@
     "utctime_updated": "2025-04-11T19:45:36.310573Z",
     "package_name": "phantom_forcepointwebsecurity",
     "main_module": "forcepointwebsecurity_connector.py",
-    "min_phantom_version": "5.0.0",
+    "min_phantom_version": "6.3.0",
     "fips_compliant": true,
     "app_wizard_version": "1.0.0",
     "configuration": {
@@ -1293,16 +1293,5 @@
             },
             "versions": "EQ(*)"
         }
-    ],
-    "pip39_dependencies": {
-        "wheel": [
-            {
-                "module": "chardet",
-                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
-            }
-        ]
-    },
-    "pip313_dependencies": {
-        "wheel": []
-    }
+    ]
 }
