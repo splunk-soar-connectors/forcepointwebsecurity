@@ -4,7 +4,7 @@ Publisher: Splunk Community \
 Connector Version: 2.0.2 \
 Product Vendor: Forcepoint \
 Product Name: Web Security \
-Minimum Product Version: 5.0.0
+Minimum Product Version: 6.3.0
 
 This app provides category management and blocking actions for the Forcepoint Web Security platform
 
