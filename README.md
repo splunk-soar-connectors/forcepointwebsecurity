@@ -1,7 +1,7 @@
 # Forcepoint Web Security
 
 Publisher: Splunk Community \
-Connector Version: 2.0.2 \
+Connector Version: 2.0.3 \
 Product Vendor: Forcepoint \
 Product Name: Web Security \
 Minimum Product Version: 6.3.0
