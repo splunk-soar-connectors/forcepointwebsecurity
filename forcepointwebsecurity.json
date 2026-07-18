@@ -8,14 +8,14 @@
     "logo_dark": "logo_forcepoint_dark.svg",
     "product_name": "Web Security",
     "product_version_regex": ".*",
-    "python_version": "3",
+    "python_version": "3.9, 3.13",
     "publisher": "Splunk Community",
     "contributors": [
         {
             "name": "Ian Wills"
         }
     ],
-    "license": "Copyright (c) 2019-2025 Splunk Inc.",
+    "license": "Copyright (c) 2019-2026 Splunk Inc.",
     "app_version": "2.0.3",
     "utctime_updated": "2025-04-28T17:33:37.098975Z",
     "package_name": "phantom_forcepointwebsecurity",
@@ -1293,5 +1293,11 @@
             },
             "versions": "EQ(*)"
         }
-    ]
+    ],
+    "pip39_dependencies": {
+        "wheel": []
+    },
+    "pip313_dependencies": {
+        "wheel": []
+    }
 }

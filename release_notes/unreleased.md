@@ -1,3 +1,3 @@
 **Unreleased**
 
-- Honor the TLS verification setting and enable certificate verification by default.
+* - Honor the TLS verification setting and enable certificate verification by default.

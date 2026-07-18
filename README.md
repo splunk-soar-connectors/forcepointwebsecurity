@@ -1,12 +1,16 @@
 # Forcepoint Web Security
 
-Publisher: Splunk Community \
-Connector Version: 2.0.3 \
-Product Vendor: Forcepoint \
-Product Name: Web Security \
+Publisher: Splunk Community <br>
+Connector Version: 2.0.3 <br>
+Product Vendor: Forcepoint <br>
+Product Name: Web Security <br>
 Minimum Product Version: 6.3.0
 
 This app provides category management and blocking actions for the Forcepoint Web Security platform
+
+TLS certificate verification is enabled by default. Install a CA-issued certificate on the
+Forcepoint server or add its issuing certificate to the SOAR trust store before connecting;
+disable verification only when an administrator has explicitly accepted that risk.
 
 ### Configuration variables
 
@@ -22,23 +26,23 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[block ip](#action-block-ip) - Block IP or list of IPs by adding them to the supplied category \
-[block url](#action-block-url) - Block URL or list of URLs by adding them to the supplied category \
-[unblock ip](#action-unblock-ip) - Unblock IP or list of IPs by removing them from the supplied category \
-[unblock url](#action-unblock-url) - Unblock URL or list of URLs by removing them from the supplied category \
-[lookup ip](#action-lookup-ip) - Lookup the categories related to the IP or list of IPs \
-[lookup url](#action-lookup-url) - Lookup the categories related to the URL or list of URLs \
-[get category](#action-get-category) - Return the category list contents \
-[list categories](#action-list-categories) - Return a list of all API-managed categories \
-[delete category](#action-delete-category) - Delete API-managed category \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[block ip](#action-block-ip) - Block IP or list of IPs by adding them to the supplied category <br>
+[block url](#action-block-url) - Block URL or list of URLs by adding them to the supplied category <br>
+[unblock ip](#action-unblock-ip) - Unblock IP or list of IPs by removing them from the supplied category <br>
+[unblock url](#action-unblock-url) - Unblock URL or list of URLs by removing them from the supplied category <br>
+[lookup ip](#action-lookup-ip) - Lookup the categories related to the IP or list of IPs <br>
+[lookup url](#action-lookup-url) - Lookup the categories related to the URL or list of URLs <br>
+[get category](#action-get-category) - Return the category list contents <br>
+[list categories](#action-list-categories) - Return a list of all API-managed categories <br>
+[delete category](#action-delete-category) - Delete API-managed category <br>
 [add category](#action-add-category) - Add API-managed category to Forcepoint
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -53,7 +57,7 @@ No Output
 
 Block IP or list of IPs by adding them to the supplied category
 
-Type: **contain** \
+Type: **contain** <br>
 Read only: **False**
 
 Adding an IP to a category automatically sets it into a blocking action.
@@ -88,7 +92,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Block URL or list of URLs by adding them to the supplied category
 
-Type: **contain** \
+Type: **contain** <br>
 Read only: **False**
 
 Adding URLs to a category automatically sets it into a blocking action.<br />NOTE: If a url is provided without the protocol, it will block HTTP, HTTPS, and FTP.
@@ -123,7 +127,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Unblock IP or list of IPs by removing them from the supplied category
 
-Type: **correct** \
+Type: **correct** <br>
 Read only: **False**
 
 An empty category will remove them from all available categories.
@@ -158,7 +162,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Unblock URL or list of URLs by removing them from the supplied category
 
-Type: **correct** \
+Type: **correct** <br>
 Read only: **False**
 
 An empty category will remove them from all available categories.<br />NOTE: If a url is provided without the protocol, it will unblock HTTP, HTTPS, and FTP.
@@ -193,7 +197,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Lookup the categories related to the IP or list of IPs
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -220,7 +224,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Lookup the categories related to the URL or list of URLs
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -247,7 +251,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Return the category list contents
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 Return all URLs and IPs in a specified category.
@@ -276,7 +280,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Return a list of all API-managed categories
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 Only API-managed categories can be viewed or changed.
@@ -304,7 +308,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Delete API-managed category
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 Only API-managed categories can be viewed or changed.
@@ -332,7 +336,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Add API-managed category to Forcepoint
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -360,7 +364,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
