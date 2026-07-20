@@ -1,6 +1,6 @@
 # File: forcepointwebsecurity_connector.py
 #
-# Copyright (c) 2019-2025 Splunk Inc.
+# Copyright (c) 2019-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -857,7 +857,7 @@ class ForcepointWebSecurityConnector(BaseConnector):
         self._username = config["username"]
         self._password = config["password"]
 
-        self._verify_cert = config.get("verify_server_certificate", False)
+        self._verify_cert = config.get("verify_server_cert", True)
 
         return phantom.APP_SUCCESS
 
